@@ -1135,8 +1135,8 @@ function detectChannel() {
     const queryString = getQueryString();
       const channel = detectChannel();
     const urlMap = {
-        meta: "/checkout/?offer_id=156",
-        google: "/checkout/?offer_id=156",
+        meta: "checkout?offer_id=156",
+        google: "checkout?offer_id=156",
     };
     const checkoutURL = urlMap[channel ?? "meta"]
     window.checkoutURL = checkoutURL;
@@ -1148,7 +1148,7 @@ function detectChannel() {
         allLinks.forEach(link => {
             let currentHref = link.getAttribute("href");
             if(!(currentHref.includes('#') || currentHref.includes('tel:'))) {
-                currentHref += `?${queryString}`;
+                currentHref += (currentHref.includes('?') ? '&' : '?') + queryString;
                 link.setAttribute("href", currentHref);
             }
         });
