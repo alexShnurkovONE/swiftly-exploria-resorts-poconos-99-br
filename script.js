@@ -253,50 +253,24 @@ function createCarousel(wrapId, images) {
    OFFER SHOWCASE CAROUSEL
    ============================================ */
 function initOfferCarousel() {
-  const showcaseImages = [
-    { src: 'images/resort/living-room.webp',    label: 'Living Room' },
-    { src: 'images/resort/one-bedroom.webp',    label: 'Master Bedroom' },
-    { src: 'images/resort/kitchen-suite.webp',  label: 'Full Kitchen' },
-    { src: 'images/resort/bathroom.webp',       label: 'Spa Bathroom' },
-    { src: 'images/resort/private-balcony.webp',label: 'Patio or Balcony' },
-  ];
-  createCarousel('offer-carousel', showcaseImages);
+  const wrap = document.getElementById('offer-carousel');
+  if (!wrap) return;
+  const images = Array.from(wrap.querySelectorAll('.carousel-thumbs .thumb-btn img')).map(img => ({
+    src: img.getAttribute('src'),
+    label: img.getAttribute('alt'),
+  }));
+  createCarousel('offer-carousel', images);
 }
 
 /* ============================================
    ACCOMMODATION CAROUSELS
    ============================================ */
 function initAccomCarousels() {
-  const accommodationImages = [
-    { src: 'images/gallery/4.webp',              label: '18-Hole Golf Course' },
-    { src: 'images/resort/bed.webp',             label: '1-Bedroom Villa' },
-    { src: 'images/gallery/7.webp',              label: 'Accommodations' },
-    { src: 'images/resort/outdoor-activities.webp', label: 'Pool & Recreation' },
-    { src: 'images/gallery/2.webp',              label: 'Accommodations' },
-  ];
-  const condoImages = [
-    { src: 'images/resort/bed.webp',     label: 'One Bedroom Condo' },
-    { src: 'images/resort/kitchen.webp', label: 'One Bedroom Condo' },
-    { src: 'images/resort/sala.webp',    label: 'One Bedroom Condo' },
-    { src: 'images/resort/exterior.webp',label: 'One Bedroom Condo' },
-  ];
-  const resortImages = [
-    { src: 'images/gallery/mexico.webp',      label: 'Resort Condo Stay' },
-    { src: 'images/gallery/canada.webp',      label: 'Resort Condo Stay' },
-    { src: 'images/lifestyle/caribbean2.webp',label: 'Resort Condo Stay' },
-    { src: 'images/lifestyle/couple.webp',    label: 'Resort Condo Stay' },
-  ];
-  const thingsImages = [
-    { src: 'images/activities/railway.webp',      label: 'Lehigh Gorge Railway' },
-    { src: 'images/activities/raceway.webp',       label: 'Pocono Raceway' },
-    { src: 'images/activities/bushkill-falls.webp',label: 'Bushkill Falls' },
-    { src: 'images/gallery/lehigh-river.webp',     label: 'Lehigh River' },
-  ];
-
-  createCarousel('accom-carousel-1', accommodationImages);
-  createCarousel('accom-carousel-2', condoImages);
-  createCarousel('accom-carousel-3', resortImages);
-  createCarousel('accom-carousel-4', thingsImages);
+  ['accom-carousel-1', 'accom-carousel-2', 'accom-carousel-3', 'accom-carousel-4'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el || !el.dataset.slides) return;
+    createCarousel(id, JSON.parse(el.dataset.slides));
+  });
 }
 
 /* ============================================
@@ -316,18 +290,7 @@ function initFAQ() {
 /* ============================================
    GALLERY LIGHTBOX
    ============================================ */
-const galleryImages = [
-  { src: 'images/gallery/4.webp',              label: '18-Hole Golf Course' },
-  { src: 'images/resort/bed.webp',             label: '1-Bedroom Villa' },
-  { src: 'images/gallery/7.webp',              label: 'Accommodations' },
-  { src: 'images/resort/outdoor-activities.webp', label: 'Pool & Recreation' },
-  { src: 'images/gallery/2.webp',              label: 'Accommodations' },
-  { src: 'images/gallery/5.webp',              label: 'Outdoor Activities' },
-  { src: 'images/resort/warehouse.webp',       label: 'On-site Dining' },
-  { src: 'images/gallery/6.webp',              label: 'Poconos Scenery' },
-  { src: 'images/gallery/3.webp',              label: 'Resort Views' },
-];
-
+let galleryImages = [];
 let galleryLightboxIndex = null;
 
 function openGalleryLightbox(idx) {
@@ -354,6 +317,12 @@ function updateGalleryLightbox() {
 }
 
 function initGalleryLightbox() {
+  const allItems = document.querySelectorAll('#gallery-track .gallery-item');
+  galleryImages = Array.from(allItems).slice(0, allItems.length / 2).map(item => {
+    const img = item.querySelector('img');
+    return { src: img.getAttribute('src'), label: img.getAttribute('alt') };
+  });
+
   const backdrop = document.getElementById('gallery-lightbox');
 
   backdrop.addEventListener('click', e => {
@@ -426,13 +395,6 @@ function initModals() {
 /* ============================================
    TESTIMONIAL MODAL
    ============================================ */
-const testimonials = [
-  { quote: "30+ year owner the place has never looked nicer a lot of effort went into refurbishing the units and grounds. The Warehouse restaurant has nice atmosphere and great food. Close to many Pocono attractions. There is a golf course. you can walk around the lake. the staff is friendly. the rooms are clean. the grounds are well maintained. lots of happy friendly people. great restaurants are close by.", name: "anthonymarino38", title: "Verified Owner", theme: "orange" },
-  { quote: "I'm a New Owner This is a great investment for couples like my wife and I.. We love weekend getaways and Exploria makes life easy There are hundreds pf places within driving distance and now we can go anywhere is the US whenever we want", name: "kevinN6489FO", title: "Verified Owner", theme: "teal" },
-  { quote: "Excellent Stay I stayed at one of the newly renovated units and was extremely impressed with the upgrade. After being an owner for approximately 10 years, I felt valued and it definitely felt like home away from home for me and my family.", name: "nnirichards", title: "Verified Owner", theme: "orange" },
-  { quote: "Lovely property I've been a timeshare owner for many years and under Exploria, Pocono Mountains is again shining as a premier place to stay. The units are clean, the amenities are pretty good and the area has other activities that you may not find on the property.", name: "Helen C W", title: "Verified Owner", theme: "teal" }
-];
-
 function openTestimonialModal(t) {
   const modal = document.getElementById('testimonial-modal');
   const quoteIcon = modal.querySelector('.testimonial-modal-quote');
@@ -449,23 +411,19 @@ function openTestimonialModal(t) {
 }
 
 function initTestimonials() {
-  document.querySelectorAll('.testimonial-read-more').forEach((btn, i) => {
-    btn.addEventListener('click', () => openTestimonialModal(testimonials[i]));
+  document.querySelectorAll('.testimonial-read-more').forEach(btn => {
+    btn.addEventListener('click', () => openTestimonialModal({
+      quote: btn.dataset.quote,
+      name: btn.dataset.name,
+      title: btn.dataset.title,
+      theme: btn.classList.contains('orange') ? 'orange' : 'teal',
+    }));
   });
 }
 
 /* ============================================
    EXPLORE POCONOS BENTO
    ============================================ */
-const bentoItems = [
-  { id: 1, title: 'Lehigh Gorge Scenic Railway', image: 'images/activities/railway.webp', description: "A breathtaking railroad journey through one of Pennsylvania's most stunning natural gorges.", location: 'Jim Thorpe, PA — 45 miles from resort', highlights: ['Scenic gorge views', 'Historic Jim Thorpe', 'Seasonal excursions', 'Fall foliage rides'] },
-  { id: 2, title: 'Bushkill Falls', image: 'images/activities/bushkill-falls.webp', description: "Pennsylvania's Niagara — stunning waterfalls and scenic hiking trails.", location: 'Bushkill, PA — 25 miles from resort', highlights: ['8 scenic waterfalls', 'Miles of hiking trails', 'Paddleboating', 'Nature & wildlife exhibits'] },
-  { id: 3, title: 'Pocono Raceway', image: 'images/activities/raceway.webp', description: 'Home of NASCAR\'s iconic "Tricky Triangle" and unforgettable race experiences.', location: 'Long Pond, PA — 30 miles from resort', highlights: ['NASCAR race events', 'Fan Zone experiences', 'Infield access', 'Camping & tailgating'] },
-  { id: 4, title: 'Kalahari Resorts', image: 'images/activities/kalahari-waterswing.webp', description: "America's largest indoor waterpark resort, perfect for family fun year-round.", location: 'Pocono Manor, PA — 10 miles from resort', highlights: ['100,000+ sq ft indoor waterpark', 'Family rides & attractions', 'Full-service spa', 'Dining & entertainment'] },
-  { id: 5, title: 'Premium Outlets', image: 'images/activities/shopping.webp', description: 'Tannersville Crossings Premium Outlets and top shopping destinations nearby.', location: 'Multiple locations near Poconos', hours: 'Mon–Sat 10am–9pm, Sun 10am–7pm', highlights: ['180+ brand-name stores', 'Up to 65% off retail', 'Dining options', 'Savings on select items'] },
-  { id: 6, title: 'Pocono Mountains Skiing', image: 'images/activities/skiing.webp', description: 'World-class ski resorts including Blue Mountain and Jack Frost/Big Boulder.', location: 'Poconos, PA — 15 miles from resort', hours: 'Daily 9am–9pm (hours vary by season)', highlights: ['Skiing & snowboarding', 'Snow tubing', 'Terrain parks', 'Ski & snowboard lessons'] }
-];
-
 function openBentoLightbox(item) {
   const lightbox = document.getElementById('bento-lightbox');
   lightbox.querySelector('.bento-lightbox-img img').src = item.image;
@@ -492,8 +450,15 @@ function openBentoLightbox(item) {
 }
 
 function initBento() {
-  document.querySelectorAll('.bento-item').forEach((item, i) => {
-    item.addEventListener('click', () => openBentoLightbox(bentoItems[i]));
+  document.querySelectorAll('.bento-item').forEach(item => {
+    item.addEventListener('click', () => openBentoLightbox({
+      title: item.querySelector('.bento-item-title').textContent,
+      image: item.querySelector('img').getAttribute('src'),
+      description: item.dataset.description,
+      location: item.dataset.location,
+      hours: item.dataset.hours || null,
+      highlights: item.dataset.highlights.split('|'),
+    }));
   });
 
   const lightbox = document.getElementById('bento-lightbox');
