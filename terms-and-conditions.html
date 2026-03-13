@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms & Conditions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      }
+       /* Exit Intent Modal Styles */
+       .exit-intent-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+      .exit-intent-modal.active {
+        display: flex;
+      }
+      .exit-intent-modal-content {
+        background: white;
+        border-radius: 1.5rem;
+        max-width: 440px;
+        width: 100%;
+        padding: 2rem;
+        position: relative;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        animation: modalSlideIn 0.3s ease-out;
+      }
+      @keyframes modalSlideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .exit-intent-modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 2rem;
+        height: 2rem;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.5rem;
+        transition: background-color 0.2s;
+      }
+      .exit-intent-modal-close:hover {
+        background-color: #f3f4f6;
+      }
+      .exit-intent-modal-close svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        stroke: #374151;
+      }
+      .exit-intent-shield {
+        width: 4rem;
+        height: 4rem;
+        background-color: #f0fdfa;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+      }
+      .exit-intent-shield svg {
+        width: 2rem;
+        height: 2rem;
+        stroke: #0f766e;
+        stroke-width: 2;
+      }
+      .exit-intent-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #111827;
+        text-align: center;
+        margin-bottom: 1rem;
+        line-height: 1.3;
+      }
+      .exit-intent-description {
+        color: #4b5563;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+      .exit-intent-list {
+        list-style: none;
+        background-color: #f9fafb;
+        padding: 1rem;
+        margin: 0 0 1.5rem 0;
+      }
+      .exit-intent-list li {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 0.75rem;
+        color: #374151;
+        line-height: 1.5;
+      }
+      .exit-intent-list li svg {
+        width: 1.25rem;
+        height: 1.25rem;
+        stroke: #0D9488;
+        stroke-width: 2.5;
+        flex-shrink: 0;
+        margin-right: 0.75rem;
+        margin-top: 0.125rem;
+      }
+      .exit-intent-button {
+        width: 100%;
+        background-color: #f97316;
+        color: white;
+        border: none;
+        border-radius: 0.75rem;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        margin-bottom: 1rem;
+      }
+      .exit-intent-button:hover {
+        background-color: #ea580c;
+      }
+      .exit-intent-decline {
+        text-align: center;
+        color: #6b7280;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: color 0.2s;
+      }
+      .exit-intent-decline:hover {
+        text-decoration: underline;
+      }
+      .exit-intent-decline:hover {
+        color: #374151;
+      }
+      @media (max-width: 640px) {
+        .exit-intent-modal-content {
+          padding: 1.5rem;
+        }
+        .exit-intent-title {
+          font-size: 1.25rem;
+        }
+      }
+      /* Package Confirmation Modal Styles */
+      .package-confirmation-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px);
+        z-index: 10000;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+      .package-confirmation-modal.active {
+        display: flex;
+      }
+      .package-confirmation-content {
+        background: white;
+        border-radius: 1.5rem;
+        max-width: 500px;
+        width: 100%;
+        padding: 2.5rem;
+        position: relative;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        animation: modalSlideIn 0.3s ease-out;
+      }
+      @keyframes modalSlideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .package-confirmation-title {
+        font-size: 1.75rem;
+        font-weight: bold;
+        color: #0f766e;
+        text-align: center;
+        margin-bottom: 2rem;
+        line-height: 1.3;
+      }
+      .package-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        margin-bottom: 0.75rem;
+        border-radius: 0.75rem;
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: all 0.5s ease-out;
+        background-color: #fff7ed;
+        transition: background-color 0.5s ease-out;
+      }
+      .package-item.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .package-item.complete {
+        background-color: #f0fdfa;
+      }
+      .package-item-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .package-item-icon.loading {
+        background-color: #f97316;
+      }
+      .package-item-icon.loading svg {
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .package-item-icon.complete {
+        background-color: #0f766e;
+      }
+      .package-item-icon svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        stroke: white;
+        stroke-width: 2.5;
+        z-index: 1;
+        position: relative;
+      }
+      .package-item-text {
+        flex: 1;
+        font-size: 1rem;
+        color: #374151;
+        font-weight: 500;
+      }
+      .package-secured {
+        text-align: center;
+        margin-top: 2rem;
+        padding-top: 2rem;
+      }
+      .package-secured-text {
+        font-size: 1.125rem;
+        color: #0f766e;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+      .package-secured-text .dot {
+        width: 0.5rem;
+        height: 0.5rem;
+        background-color: #0f766e;
+        border-radius: 50%;
+      }
+      .package-redirecting {
+        text-align: center;
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+        opacity: 0;
+        transition: opacity 0.5s ease-in;
+      }
+      .package-redirecting.visible {
+        opacity: 1;
+      }
+      @media (max-width: 640px) {
+        .package-confirmation-content {
+          padding: 1.5rem;
+        }
+        .package-confirmation-title {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 min-h-screen">
+    <div class="w-full max-w-4xl mx-auto bg-white shadow-2xl my-8 rounded-2xl overflow-hidden">
+      <!-- Header -->
+      <div class="flex items-center justify-between p-6 border-b border-gray-200 bg-gradient-to-r from-teal-600 to-teal-700">
+        <h1 class="text-xl md:text-2xl font-bold text-white">Terms & Conditions</h1>
+      </div>
+      
+      <!-- Content -->
+      <div class="p-6 md:p-8">
+        <div class="max-w-3xl mx-auto space-y-6 text-gray-700 leading-relaxed">
+          <section>
+            <p class="mb-4">The vacation package being offered is provided by Club Exploria, LLC ("Sponsor"), a Delaware limited liability company whose address is 25 Town Center Boulevard, Suite C., Clermont, FL 34714. Sponsor is the developer and seller of Club Exploria, a multi-site timeshare plan.</p>
+          </section>
+
+          <section>
+            <h3 class="text-lg font-bold text-gray-900 mb-3">Poconos Mountain Villas Poconos Owner Participation Requirement</h3>
+            <p class="mb-4">All owners on the account are required to travel and attend a minimum 60-minute Owner Update presentation together. The scheduled times of the Owner Update depends on the property location of the update. Failure of all parties on the account to travel and attend the required presentation will result in forfeiture of the package and associated gift(s). Club Exploria property owners' accounts must be in good standing and cannot be in collections, bankruptcy nor have an active loan modification. Club Exploria Owners may not travel on a promotional package within six (6) months of their most recent stay/tour. Only one vacation package per household.</p>
+          </section>
+
+          <section>
+            <h3 class="text-lg font-bold text-gray-900 mb-3">Cancellation &amp; Refund Policy</h3>
+            <p class="mb-4">This offer is non-refundable and non-transferable except as described herein or as required by law. Failure to comply with the rescheduling policy, attend the sales presentation, or meet the eligibility requirements will result in forfeiture of the package price and benefits of the package. You may cancel and request a refund at any time within thirty (30) days following the date that you purchased your vacation package.</p>
+          </section>
+
+          <section>
+            <h3 class="text-lg font-bold text-gray-900 mb-3">Cruise Gift Certificate Disclaimer</h3>
+            <p class="mb-4">Full details and complete terms and conditions for redemption of the Cruise Gift Certificate are printed on the promotional certificate which will be emailed directly to you. This promotional offer is not free, deposits, government taxes, carrier (if applicable) and agency-imposed fees are not included. Fulfillment of this offer is the sole and exclusive obligation of Customer Service Network Group ("CSNG").</p>
+          </section>
+
+          <section>
+            <h3 class="text-lg font-bold text-gray-900 mb-3">Timeshare Disclosure</h3>
+            <p class="mb-4">This advertising material is being used for the purpose of soliciting sales of a vacation ownership plan. The complete offering terms are contained in an offering plan available from the sponsor.</p>
+          </section>
+
+          <section>
+            <h3 class="text-lg font-bold text-gray-900 mb-3">New York Disclosure</h3>
+            <p class="mb-4">This offer is void where prohibited by law. New York residents: This advertisement is not an offering. An offering can only be made by a prospectus filed first with the Department of Law of the State of New York. Such filing does not constitute approval by the Department of Law.</p>
+          </section>
+        </div>
+      </div>
+      
+      <!-- Footer -->
+      <div class="p-4 border-t border-gray-200 bg-gray-50">
+        <p class="text-sm text-gray-600 text-center">© 2026 Exploria Resorts. All rights reserved.</p>
+      </div>
+    </div>
+  </body>
+</html>
