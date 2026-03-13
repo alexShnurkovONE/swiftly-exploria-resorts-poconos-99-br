@@ -255,7 +255,7 @@ function createCarousel(wrapId, images) {
 function initOfferCarousel() {
   const showcaseImages = [
     { src: 'images/resort/living-room.webp',    label: 'Living Room' },
-    { src: 'images/resort/one-bedroom.avif',    label: 'Master Bedroom' },
+    { src: 'images/resort/one-bedroom.webp',    label: 'Master Bedroom' },
     { src: 'images/resort/kitchen-suite.webp',  label: 'Full Kitchen' },
     { src: 'images/resort/bathroom.webp',       label: 'Spa Bathroom' },
     { src: 'images/resort/private-balcony.webp',label: 'Patio or Balcony' },
@@ -268,29 +268,29 @@ function initOfferCarousel() {
    ============================================ */
 function initAccomCarousels() {
   const accommodationImages = [
-    { src: 'images/gallery/4.avif',              label: '18-Hole Golf Course' },
-    { src: 'images/resort/bed.avif',             label: '1-Bedroom Villa' },
-    { src: 'images/gallery/7.avif',              label: 'Accommodations' },
-    { src: 'images/resort/outdoor-activities.avif', label: 'Pool & Recreation' },
-    { src: 'images/gallery/2.avif',              label: 'Accommodations' },
+    { src: 'images/gallery/4.webp',              label: '18-Hole Golf Course' },
+    { src: 'images/resort/bed.webp',             label: '1-Bedroom Villa' },
+    { src: 'images/gallery/7.webp',              label: 'Accommodations' },
+    { src: 'images/resort/outdoor-activities.webp', label: 'Pool & Recreation' },
+    { src: 'images/gallery/2.webp',              label: 'Accommodations' },
   ];
   const condoImages = [
-    { src: 'images/resort/bed.avif',     label: 'One Bedroom Condo' },
-    { src: 'images/resort/kitchen.avif', label: 'One Bedroom Condo' },
-    { src: 'images/resort/sala.avif',    label: 'One Bedroom Condo' },
-    { src: 'images/resort/exterior.avif',label: 'One Bedroom Condo' },
+    { src: 'images/resort/bed.webp',     label: 'One Bedroom Condo' },
+    { src: 'images/resort/kitchen.webp', label: 'One Bedroom Condo' },
+    { src: 'images/resort/sala.webp',    label: 'One Bedroom Condo' },
+    { src: 'images/resort/exterior.webp',label: 'One Bedroom Condo' },
   ];
   const resortImages = [
-    { src: 'images/gallery/mexico.avif',      label: 'Resort Condo Stay' },
-    { src: 'images/gallery/canada.avif',      label: 'Resort Condo Stay' },
-    { src: 'images/lifestyle/caribbean2.avif',label: 'Resort Condo Stay' },
-    { src: 'images/lifestyle/couple.avif',    label: 'Resort Condo Stay' },
+    { src: 'images/gallery/mexico.webp',      label: 'Resort Condo Stay' },
+    { src: 'images/gallery/canada.webp',      label: 'Resort Condo Stay' },
+    { src: 'images/lifestyle/caribbean2.webp',label: 'Resort Condo Stay' },
+    { src: 'images/lifestyle/couple.webp',    label: 'Resort Condo Stay' },
   ];
   const thingsImages = [
-    { src: 'images/activities/railway.avif',      label: 'Lehigh Gorge Railway' },
+    { src: 'images/activities/railway.webp',      label: 'Lehigh Gorge Railway' },
     { src: 'images/activities/raceway.webp',       label: 'Pocono Raceway' },
     { src: 'images/activities/bushkill-falls.webp',label: 'Bushkill Falls' },
-    { src: 'images/gallery/lehigh-river.avif',     label: 'Lehigh River' },
+    { src: 'images/gallery/lehigh-river.webp',     label: 'Lehigh River' },
   ];
 
   createCarousel('accom-carousel-1', accommodationImages);
@@ -317,15 +317,15 @@ function initFAQ() {
    GALLERY LIGHTBOX
    ============================================ */
 const galleryImages = [
-  { src: 'images/gallery/4.avif',              label: '18-Hole Golf Course' },
-  { src: 'images/resort/bed.avif',             label: '1-Bedroom Villa' },
-  { src: 'images/gallery/7.avif',              label: 'Accommodations' },
-  { src: 'images/resort/outdoor-activities.avif', label: 'Pool & Recreation' },
-  { src: 'images/gallery/2.avif',              label: 'Accommodations' },
-  { src: 'images/gallery/5.avif',              label: 'Outdoor Activities' },
-  { src: 'images/resort/warehouse.avif',       label: 'On-site Dining' },
-  { src: 'images/gallery/6.avif',              label: 'Poconos Scenery' },
-  { src: 'images/gallery/3.avif',              label: 'Resort Views' },
+  { src: 'images/gallery/4.webp',              label: '18-Hole Golf Course' },
+  { src: 'images/resort/bed.webp',             label: '1-Bedroom Villa' },
+  { src: 'images/gallery/7.webp',              label: 'Accommodations' },
+  { src: 'images/resort/outdoor-activities.webp', label: 'Pool & Recreation' },
+  { src: 'images/gallery/2.webp',              label: 'Accommodations' },
+  { src: 'images/gallery/5.webp',              label: 'Outdoor Activities' },
+  { src: 'images/resort/warehouse.webp',       label: 'On-site Dining' },
+  { src: 'images/gallery/6.webp',              label: 'Poconos Scenery' },
+  { src: 'images/gallery/3.webp',              label: 'Resort Views' },
 ];
 
 let galleryLightboxIndex = null;
@@ -458,12 +458,12 @@ function initTestimonials() {
    EXPLORE POCONOS BENTO
    ============================================ */
 const bentoItems = [
-  { id: 1, title: 'Lehigh Gorge Scenic Railway', image: 'images/activities/railway.avif', description: "A breathtaking railroad journey through one of Pennsylvania's most stunning natural gorges.", location: 'Jim Thorpe, PA — 45 miles from resort', highlights: ['Scenic gorge views', 'Historic Jim Thorpe', 'Seasonal excursions', 'Fall foliage rides'] },
+  { id: 1, title: 'Lehigh Gorge Scenic Railway', image: 'images/activities/railway.webp', description: "A breathtaking railroad journey through one of Pennsylvania's most stunning natural gorges.", location: 'Jim Thorpe, PA — 45 miles from resort', highlights: ['Scenic gorge views', 'Historic Jim Thorpe', 'Seasonal excursions', 'Fall foliage rides'] },
   { id: 2, title: 'Bushkill Falls', image: 'images/activities/bushkill-falls.webp', description: "Pennsylvania's Niagara — stunning waterfalls and scenic hiking trails.", location: 'Bushkill, PA — 25 miles from resort', highlights: ['8 scenic waterfalls', 'Miles of hiking trails', 'Paddleboating', 'Nature & wildlife exhibits'] },
   { id: 3, title: 'Pocono Raceway', image: 'images/activities/raceway.webp', description: 'Home of NASCAR\'s iconic "Tricky Triangle" and unforgettable race experiences.', location: 'Long Pond, PA — 30 miles from resort', highlights: ['NASCAR race events', 'Fan Zone experiences', 'Infield access', 'Camping & tailgating'] },
-  { id: 4, title: 'Kalahari Resorts', image: 'images/activities/kalahari-waterswing.avif', description: "America's largest indoor waterpark resort, perfect for family fun year-round.", location: 'Pocono Manor, PA — 10 miles from resort', highlights: ['100,000+ sq ft indoor waterpark', 'Family rides & attractions', 'Full-service spa', 'Dining & entertainment'] },
-  { id: 5, title: 'Premium Outlets', image: 'images/activities/shopping.avif', description: 'Tannersville Crossings Premium Outlets and top shopping destinations nearby.', location: 'Multiple locations near Poconos', hours: 'Mon–Sat 10am–9pm, Sun 10am–7pm', highlights: ['180+ brand-name stores', 'Up to 65% off retail', 'Dining options', 'Savings on select items'] },
-  { id: 6, title: 'Pocono Mountains Skiing', image: 'images/activities/skiing.avif', description: 'World-class ski resorts including Blue Mountain and Jack Frost/Big Boulder.', location: 'Poconos, PA — 15 miles from resort', hours: 'Daily 9am–9pm (hours vary by season)', highlights: ['Skiing & snowboarding', 'Snow tubing', 'Terrain parks', 'Ski & snowboard lessons'] }
+  { id: 4, title: 'Kalahari Resorts', image: 'images/activities/kalahari-waterswing.webp', description: "America's largest indoor waterpark resort, perfect for family fun year-round.", location: 'Pocono Manor, PA — 10 miles from resort', highlights: ['100,000+ sq ft indoor waterpark', 'Family rides & attractions', 'Full-service spa', 'Dining & entertainment'] },
+  { id: 5, title: 'Premium Outlets', image: 'images/activities/shopping.webp', description: 'Tannersville Crossings Premium Outlets and top shopping destinations nearby.', location: 'Multiple locations near Poconos', hours: 'Mon–Sat 10am–9pm, Sun 10am–7pm', highlights: ['180+ brand-name stores', 'Up to 65% off retail', 'Dining options', 'Savings on select items'] },
+  { id: 6, title: 'Pocono Mountains Skiing', image: 'images/activities/skiing.webp', description: 'World-class ski resorts including Blue Mountain and Jack Frost/Big Boulder.', location: 'Poconos, PA — 15 miles from resort', hours: 'Daily 9am–9pm (hours vary by season)', highlights: ['Skiing & snowboarding', 'Snow tubing', 'Terrain parks', 'Ski & snowboard lessons'] }
 ];
 
 function openBentoLightbox(item) {
