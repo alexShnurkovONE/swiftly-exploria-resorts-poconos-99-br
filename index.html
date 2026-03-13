@@ -1095,5 +1095,82 @@
 
 <!-- Load scripts -->
 <script src="script.js"></script>
+<script>
+// CTA Checkout URL
+function getQueryString() {
+    if (window.location.href.indexOf("?") >= 0) {
+       return window.location.href.slice(window.location.href.indexOf("?") + 1);
+    } else {
+      return "";
+    }
+  }
+function detectChannel() {
+    const queryString = getQueryString();
+    const params = queryString.split("&").filter(Boolean).reduce((acc, pair) => {
+      const [key, value] = pair.split("=").map(decodeURIComponent);
+      acc[key] = value || "";
+      return acc;
+    }, {});
+    const utmSource = (params.utm_source || "").toLowerCase();
+    const referrer = (params.referrer || "").toLowerCase();
+    if (utmSource.includes("facebook") || referrer.includes("facebook.com") || referrer.includes("fb.com")) {
+      return "meta";
+    }
+    if (utmSource.includes("google") || referrer.includes("google.com") || referrer.includes("googleads") || referrer.includes("doubleclick")) {
+      return "google";
+    }
+    // Fallback
+    const ref = document.referrer.toLowerCase();
+    if (ref.includes("facebook.com") || ref.includes("fb.com")) {
+      return "meta";
+    }
+    if (ref.includes("google.com") || ref.includes("googleads") || ref.includes("doubleclick")) {
+      return "google";
+    }
+    // Default value
+    return "meta";
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    let links = document.querySelectorAll(".checkout-cta");
+    const queryString = getQueryString();
+      const channel = detectChannel();
+    const urlMap = {
+        meta: "/checkout/?offer_id=156",
+        google: "/checkout/?offer_id=156",
+    };
+    const checkoutURL = urlMap[channel ?? "meta"]
+    window.checkoutURL = checkoutURL;
+    links.forEach(cta => {
+        cta.setAttribute("href", checkoutURL);
+    });
+      if (queryString.length > 0) {
+      let allLinks = document.querySelectorAll("a");
+        allLinks.forEach(link => {
+            let currentHref = link.getAttribute("href");
+            if(!(currentHref.includes('#') || currentHref.includes('tel:'))) {
+                currentHref += `?${queryString}`;
+                link.setAttribute("href", currentHref);
+            }
+        });
+    }
+});
+  document.addEventListener("DOMContentLoaded", function () {
+      const channel = detectChannel();
+      if(channel === "google"){
+        const homepageCounter = document.querySelectorAll(".offerexpirecounter");
+          const megaPageCounterContainer = document.querySelectorAll(".acccardblock");
+          const megaPageCounter = document.querySelectorAll(".offerexpirecounteracccard");
+          homepageCounter.forEach((counter) => {
+            counter.style.display = "none";
+        });
+          megaPageCounterContainer.forEach((container) => {
+            container.style.justifyContent = "center";
+        })
+          megaPageCounter.forEach((counter) => {
+            counter.style.display = "none";
+        });
+    }
+});
+</script>
 </body>
 </html>

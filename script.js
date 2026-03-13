@@ -4,11 +4,6 @@
    ============================================ */
 
 /* ---- URL Param Utilities ---- */
-function getQueryString() {
-  const idx = window.location.href.indexOf('?');
-  return idx >= 0 ? window.location.href.slice(idx + 1) : '';
-}
-
 function getDecodedParam(name) {
   const params = new URLSearchParams(window.location.search);
   const val = params.get(name);
@@ -20,24 +15,6 @@ function getFirstName() {
   const raw = getDecodedParam('fn');
   if (!raw) return null;
   return raw.trim().split(/\s+/).map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
-}
-
-function detectChannel() {
-  const qs = getQueryString();
-  const params = {};
-  qs.split('&').filter(Boolean).forEach(pair => {
-    const [k, v] = pair.split('=').map(decodeURIComponent);
-    params[k] = v || '';
-  });
-  const utm = (params.utm_source || '').toLowerCase();
-  const ref  = (params.referrer  || '').toLowerCase();
-  if (utm.includes('facebook') || ref.includes('facebook.com') || ref.includes('fb.com')) return 'meta';
-  if (utm.includes('google') || ref.includes('google.com') || ref.includes('googleads') || ref.includes('doubleclick')) return 'google';
-  if (utm.includes('bing') || utm.includes('microsoft') || ref.includes('bing') || ref.includes('microsoft')) return 'bing';
-  const dr = document.referrer.toLowerCase();
-  if (dr.includes('facebook.com') || dr.includes('fb.com')) return 'meta';
-  if (dr.includes('google.com') || dr.includes('googleads') || dr.includes('doubleclick')) return 'google';
-  return 'meta';
 }
 
 /* ---- Scroll to section ---- */
@@ -545,36 +522,6 @@ function initPersonalization() {
 }
 
 /* ============================================
-   CTA URL ROUTING
-   ============================================ */
-function initCTARouting() {
-  const channel = detectChannel();
-  const urlMap = { meta: '/checkout/', google: '/checkout/', bing: '/checkout/' };
-  const checkoutURL = urlMap[channel] || '/checkout/';
-  window.checkoutURL = checkoutURL;
-
-  document.querySelectorAll('.checkout-cta').forEach(cta => {
-    cta.setAttribute('href', checkoutURL);
-  });
-
-  const qs = getQueryString();
-  if (qs.length > 0) {
-    document.querySelectorAll('a').forEach(link => {
-      const href = link.getAttribute('href');
-      if (href && !href.includes('#') && !href.includes('tel:')) {
-        const sep = href.includes('?') ? '&' : '?';
-        link.setAttribute('href', href + sep + qs);
-      }
-    });
-  }
-
-  // Hide offer counter for Google/Bing
-  if (channel === 'google' || channel === 'bing') {
-    document.querySelectorAll('.offerexpirecounter').forEach(el => { el.style.display = 'none'; });
-  }
-}
-
-/* ============================================
    INIT ALL
    ============================================ */
 document.addEventListener('DOMContentLoaded', () => {
@@ -590,5 +537,4 @@ document.addEventListener('DOMContentLoaded', () => {
   initTestimonials();
   initBento();
   initPersonalization();
-  initCTARouting();
 });
